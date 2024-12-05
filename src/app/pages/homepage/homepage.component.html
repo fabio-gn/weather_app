@@ -1,10 +1,9 @@
 <p>homepage works!</p>
 <!-- <p>{{value}}</p> -->
- <div >
-  <p>{{value.main.temp}}</p>
+<div *ngIf="value && value.main">
+  <p>{{ value?.main?.temp }}</p>
   <!-- <img [src]="value.url" alt=""> -->
-  <p>{{value.weather[0].description}}</p>
- </div>
+  <p>{{ value?.weather[0]?.description }}</p>
+</div>
 
- <!-- *ngFor="let item of value" -->
-
+<!-- *ngFor="let item of value" -->

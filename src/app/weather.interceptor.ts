@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import {
   HttpRequest,
   HttpHandler,
@@ -9,12 +10,12 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class WeatherInterceptor implements HttpInterceptor {
-
+private apiKey = environment.weatherApiKey
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const newRequest = request.clone({
-      url: request.url + "d8ac040610a8b8d6bbb6fd48a86eedd7"
+      url: request.url + this.apiKey
     })
     return next.handle(newRequest);
   }

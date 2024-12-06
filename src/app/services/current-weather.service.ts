@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrentWeatherService {
-  public apiKey = 'd8ac040610a8b8d6bbb6fd48a86eedd7';
-  public meteoUrl =
-    'https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=';
-  public apiUrl =
-    'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=d8ac040610a8b8d6bbb6fd48a86eedd7';
+  
   constructor(private http: HttpClient) {}
 
   getCurrentWeather(city: string): Observable<any> {

@@ -1,0 +1,14 @@
+
+
+<div class="d-flex" style="border-radius: 0">
+  <div class="form-floating  flex-fill form-container" >
+    <input #searchText
+    style="border-radius: 0"
+     class="form-control rounded-start"
+      type="text"
+      id="search-bar"
+      placeholder="your search here">
+    <label for="search-bar">Search</label>
+  </div>
+  <button id="search-button" class="btn btn-primary rounded-end" (click)="onInput(searchText.value)"><i class="bi bi-search"></i></button>
+</div>

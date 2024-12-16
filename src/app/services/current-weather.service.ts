@@ -7,8 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CurrentWeatherService {
-  
+
   constructor(private http: HttpClient) {}
+
+  getCities(city:string):Observable<any>{
+    return this.http.get<any>(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=`)
+  }
+  getByLatLon(lat:number, lon:number):Observable<any>{
+    return this.http.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`)
+  }
 
   getCurrentWeather(city: string): Observable<any> {
     return this.http.get<any>(

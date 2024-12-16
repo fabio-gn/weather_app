@@ -1,4 +1,7 @@
-#search-button{
+#search-button {
   border-radius: 0 0;
 }
-
+ul#city-list {
+  max-height: 7rem !important;
+  overflow-y: scroll;
+}

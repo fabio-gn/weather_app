@@ -9,6 +9,10 @@ import { KelvinToCelsiusPipe } from 'src/app/kelvin-to-celsius.pipe';
 })
 export class HomepageComponent {
   public value: any = [];
+  public timezone = 0
+
+  public localSunrise?:Date
+  public localSunset?:Date
 
   constructor(public weatherSrv: CurrentWeatherService) {}
 
@@ -17,7 +21,13 @@ export class HomepageComponent {
       next: (val) => {
         console.log('Data received:', val);
         this.value = val;
+        this.timezone = val.timezone
+        console.log('timezone',val.timezone)
+        let sunriseUnix = val.sys.sunrise
+        let sunsetUnix = val.sys.sunset
+
         console.log(this.value);
+        this.setLocalTime(sunriseUnix, sunsetUnix)
       },
       error: (err) => console.error('Error fetching data:', err),
     });
@@ -29,8 +39,27 @@ export class HomepageComponent {
         console.log('Data received:', val);
         this.value = val;
         console.log(this.value);
+        this.timezone = val.timezone
+        console.log('timezone',val.timezone)
+        let sunriseUnix = val.sys.sunrise
+        let sunsetUnix = val.sys.sunset
+
+        console.log(this.value);
+        this.setLocalTime(sunriseUnix, sunsetUnix)
       },
       error: (err) => console.error('Error fetching data:', err),
     });
+  }
+  setLocalTime(sunriseUnix:number, sunsetUnix:number){
+    console.log(sunriseUnix)
+    if(sunriseUnix && sunsetUnix){
+      this.localSunrise = new Date((sunriseUnix + this.timezone) * 1000)
+      console.log(this.localSunrise)
+      this.localSunset = new Date((sunsetUnix + this.timezone) * 1000)
+      console.log(this.localSunset)
+    }
+    else {
+      console.log('error')
+    }
   }
 }

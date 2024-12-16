@@ -3,6 +3,7 @@
 <div class="d-flex" style="border-radius: 0">
   <div class="form-floating  flex-fill form-container" >
     <input #searchText
+    (input)="onInput(searchText.value)"
     style="border-radius: 0"
      class="form-control rounded-start"
       type="text"
@@ -12,3 +13,11 @@
   </div>
   <button id="search-button" class="btn btn-primary rounded-end" (click)="onInput(searchText.value)"><i class="bi bi-search"></i></button>
 </div>
+
+<ul id="city-list" *ngIf="cityList.length > 0 && searchText.value != ''" class="list-group">
+
+
+    <li *ngFor="let item of cityList" class="list-group-item">{{item.name}}</li>
+
+
+</ul>

@@ -1,0 +1,13 @@
+<div class="card mb-3 mx-2" style="width: 9rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{value!.name}} </h5>
+    <img id="weather-img" [src]="
+    'https://openweathermap.org/img/wn/' +
+    value.weather[0].icon +
+    '@4x.png'
+  " alt="">
+    <p>{{favourite!.name}}</p>
+    <p class="card-text">{{value.main.temp| kelvinToCelsius |number: '1.1-1'}}</p>
+
+  </div>
+</div>

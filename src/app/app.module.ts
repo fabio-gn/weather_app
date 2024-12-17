@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { WeatherInterceptor } from './weather.interceptor';
-import { KelvinToCelsiusPipe } from './kelvin-to-celsius.pipe';
-import { MsToKmhPipe } from './ms-to-kmh.pipe';
+import { WeatherInterceptor } from './interceptors/weather.interceptor';
+import { KelvinToCelsiusPipe } from './pipes/kelvin-to-celsius.pipe';
+import { MsToKmhPipe } from './pipes/ms-to-kmh.pipe';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FavouritesMiniCardComponent } from './components/favourites-mini-card/favourites-mini-card.component';
+import { HorizontalCarouselComponent } from './components/horizontal-carousel/horizontal-carousel.component';
 
 @NgModule({
   declarations: [
@@ -16,16 +18,14 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     HomepageComponent,
     KelvinToCelsiusPipe,
     MsToKmhPipe,
-    SearchbarComponent
+    SearchbarComponent,
+    FavouritesMiniCardComponent,
+    HorizontalCarouselComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: WeatherInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: WeatherInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

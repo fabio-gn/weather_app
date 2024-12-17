@@ -1,0 +1,15 @@
+<div class="container d-flex flex-column">
+  <div *ngIf="scrollNeeded">
+    <button (click)="scrollLeft()" class="btn carousel-button left">&lt;</button>
+    <button (click)="scrollRight()" class="btn carousel-button right">&gt;</button>
+  </div>
+  <div class="container d-flex flex-row overflow-auto" #scrollContainer>
+
+
+
+    <ng-content></ng-content>
+
+    <!-- <div *ngIf=""></div> -->
+  </div>
+
+</div>

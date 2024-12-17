@@ -1,0 +1,23 @@
+.carousel-button{
+  border-radius: 100%;
+  position:relative;
+  z-index: 3;
+
+  transform: translateY(3.8rem) scale(300%); //cambiare questi valori per decidere altezza e ingombro dei bottoni
+
+}
+.carousel-button:active{
+  border:none !important;
+  outline:none !important;
+  background: radial-gradient(circle,rgba(97, 96, 96, 0.555) 10%,rgba(244, 14, 14, 0) 100%);
+}
+.carousel-button:focus{
+  border:none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.carousel-button.right{
+  left: calc(100% - 3.7rem);
+}
+
+

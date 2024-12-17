@@ -5,3 +5,10 @@ ul#city-list {
   max-height: 7rem !important;
   overflow-y: scroll;
 }
+.list-group-item{
+  cursor:pointer;
+}
+.list-group-item:hover{
+  background-color: blue;
+  color: white
+}

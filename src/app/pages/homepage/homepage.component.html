@@ -2,11 +2,17 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center py-5">
-    <app-searchbar (onCityWritten)="searchByCity($event)" ></app-searchbar>
+    <app-searchbar (onCityWritten)="searchByCity($event)" (onCitySelected)="searchByLatLon($event)" ></app-searchbar>
 
   </div>
 
 </div>
+
+<app-horizontal-carousel *ngIf="favourites">
+  <app-favourites-mini-card *ngFor="let item of favourites" [favourite]="item"></app-favourites-mini-card>
+
+</app-horizontal-carousel>
+
 
 
 <div class="row d-flex justify-content-center py-5">
@@ -16,7 +22,7 @@
         <div class="d-flex">
           <div>
             <h6 class="flex-grow-1 fs-2">{{value?.name}}</h6>
-            <span class="d-block">{{value.sys.country}}</span>
+            <span class="d-block">{{value?.sys?.country}}</span>
           </div>
 
 
@@ -70,7 +76,7 @@
         </div>
 
         <div class="container">
-
+          <button (click)="addFavourite({lat: value.coord.lat, lon: value.coord.lon, name: value.name})" class="btn btn-primary">+</button>
         </div>
 
 

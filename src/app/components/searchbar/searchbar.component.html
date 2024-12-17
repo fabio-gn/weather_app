@@ -3,7 +3,7 @@
 <div class="d-flex" style="border-radius: 0">
   <div class="form-floating  flex-fill form-container" >
     <input #searchText
-    (input)="onInput(searchText.value)"
+    (input)="onInputToList(searchText.value)"
     style="border-radius: 0"
      class="form-control rounded-start"
       type="text"
@@ -17,7 +17,7 @@
 <ul id="city-list" *ngIf="cityList.length > 0 && searchText.value != ''" class="list-group">
 
 
-    <li *ngFor="let item of cityList" class="list-group-item">{{item.name}}</li>
+    <li *ngFor="let item of cityList" class="list-group-item" (click)="onListItemSelected(item.lat, item.lon)">{{item.name}}</li>
 
 
 </ul>

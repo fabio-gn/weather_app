@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { CurrentWeatherService } from 'src/app/services/current-weather.service';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs';
@@ -10,15 +10,22 @@ import { debounceTime, switchMap } from 'rxjs';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss']
 })
-export class SearchbarComponent {
+export class SearchbarComponent{
   constructor(public weatherSrv:CurrentWeatherService){}
 
   cityList = [{
-    name: ""
+    name: "",
+    lat: 0,
+    lon: 0,
+    country: "",
+    state: ""
   }]
+
   // private searchSubject = new Subject<string>();
   @Output()
   onCityWritten = new EventEmitter<any>();
+  @Output()
+  onCitySelected = new EventEmitter<any>()
 
 
   // ngOnInit(){
@@ -38,16 +45,22 @@ export class SearchbarComponent {
 
 
   onInputToList(city:string){
-    return this.weatherSrv.getCities(city).pipe(debounceTime(3000)).subscribe((val)=>{
+    return this.weatherSrv.getCities(city).pipe(debounceTime(1000)).subscribe((val)=>{
       this.cityList = val
       console.log("cityList", this.cityList)
     })
 
 
   }
-  onListItemSelected(){
+  onListItemSelected(lat:number, lon:number){
 
+    return this.weatherSrv.getByLatLon(lat, lon).subscribe((val) =>{
+
+      this.onCitySelected.emit(val)
+    } )
   }
+
+
 
 
   onInput(city:string){
@@ -58,5 +71,6 @@ export class SearchbarComponent {
       this.onInputToList(city)
     })
   }
+
 
 }

@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { CurrentWeatherService } from 'src/app/services/current-weather.service';
-import { Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs';
 
 

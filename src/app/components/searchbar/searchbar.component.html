@@ -4,17 +4,19 @@
   <div class="form-floating  flex-fill form-container" >
     <input #searchText
     (input)="onInputToList(searchText.value)"
+    (keyup.enter)="onSearchButtonClick(searchText.value)"
+    (focus)="setDefaultValue()"
     style="border-radius: 0"
      class="form-control rounded-start"
       type="text"
       id="search-bar"
       placeholder="your search here">
-    <label for="search-bar">Search</label>
+    <label #floatingLabel for="search-bar">Search</label>
   </div>
-  <button id="search-button" class="btn btn-primary rounded-end" (click)="onInput(searchText.value)"><i class="bi bi-search"></i></button>
+  <button id="search-button" class="btn btn-primary rounded-end" (click)="onSearchButtonClick(searchText.value)"><i class="bi bi-search"></i></button>
 </div>
 
-<ul id="city-list" *ngIf="cityList.length > 0 && searchText.value != ''" class="list-group">
+<ul id="city-list" *ngIf="cityList.length > 0 && searchText.value != '' && showList" class="list-group">
 
 
     <li *ngFor="let item of cityList" class="list-group-item" (click)="onListItemSelected(item.lat, item.lon)">{{item.name}}</li>

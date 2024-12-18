@@ -1,21 +1,27 @@
-
-
 <div class="container">
   <div class="row d-flex justify-content-center py-5">
-    <app-searchbar (onCityWritten)="searchByCity($event)" (onCitySelected)="searchByLatLon($event)" ></app-searchbar>
-
+    <app-searchbar
+      (onCityWritten)="searchByCity($event)"
+      (onCitySelected)="searchByLatLon($event)"
+    ></app-searchbar>
   </div>
-
 </div>
 
 <app-horizontal-carousel *ngIf="favourites">
-  <app-favourites-mini-card *ngFor="let item of favourites" [favourite]="item"></app-favourites-mini-card>
-
+  <app-favourites-mini-card
+    *ngFor="let item of favourites"
+    [favourite]="item"
+  ></app-favourites-mini-card>
 </app-horizontal-carousel>
 
+<app-current-weather-overview
+  (favourites)="onAddFavourite($event)"
+  [value]="value"
+  [localSunrise]="localSunrise"
+  [localSunset]="localSunset"
+></app-current-weather-overview>
 
-
-<div class="row d-flex justify-content-center py-5">
+<!--<div class="row d-flex justify-content-center py-5">
   <div class="col-md-8 col-lg-6 col-xl-5">
     <div class="card text-body" style="border-radius: 35px">
       <div class="card-body p-4">
@@ -51,10 +57,7 @@
               <i class="bi bi-moisture weather-icon d-block "></i>
               <span class="ms-1 d-block fs-3"> {{value?.main?.humidity}}% </span>
             </div>
-            <!-- <div>
-              <i class="fas fa-sun fa-fw" style="color: #868b94"></i>
-              <span class="ms-1"> 0.2h </span>
-            </div> -->
+
           </div>
           <div class="flex-grow-1">
             <div class="d-flex flex-column">
@@ -83,4 +86,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

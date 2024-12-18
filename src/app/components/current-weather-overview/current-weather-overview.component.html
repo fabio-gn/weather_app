@@ -1,0 +1,69 @@
+<div class="row d-flex justify-content-center py-5">
+  <div class="col-md-8 col-lg-6 col-xl-5">
+    <div class="card text-body" style="border-radius: 35px">
+      <div class="card-body p-4">
+        <div class="d-flex">
+          <div>
+            <h6 class="flex-grow-1 fs-2">{{value?.name}}</h6>
+            <span class="d-block">{{value?.sys?.country}}</span>
+          </div>
+
+
+
+
+        </div>
+
+        <div class="d-flex flex-column text-center mt-5 mb-4">
+          <h6 class="display-4 mb-0 font-weight-bold temperature">
+            {{ value?.main?.temp | kelvinToCelsius | number : "1.1-1" }}°C
+          </h6>
+          <span class="small" style="color: #868b94">{{
+            value?.weather[0]?.description
+          }}</span>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1" style="font-size: 1rem">
+            <div>
+              <i class="bi bi-wind weather-icon"></i>
+              <span class="ms-1 fs-3">
+                 {{value?.wind?.speed|msToKmh|number:'1.1-1'}}km/h
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-moisture weather-icon d-block "></i>
+              <span class="ms-1 d-block fs-3"> {{value?.main?.humidity}}% </span>
+            </div>
+            <!-- <div>
+              <i class="fas fa-sun fa-fw" style="color: #868b94"></i>
+              <span class="ms-1"> 0.2h </span>
+            </div> -->
+          </div>
+          <div class="flex-grow-1">
+            <div class="d-flex flex-column">
+              <span><i class="bi bi-sunrise-fill sun-icon"></i> {{ localSunrise | date:'HH:mm'}}</span>
+              <span><i class="bi bi-sunset-fill sun-icon"></i> {{ localSunset | date:'HH:mm'}}</span>
+            </div>
+          </div>
+          <div>
+            <img
+              [src]="
+                'https://openweathermap.org/img/wn/' +
+                value?.weather[0]?.icon +
+                '@4x.png'
+              "
+              width="100px"
+            />
+          </div>
+
+        </div>
+
+        <div class="container">
+          <button (click)="addFavourite({lat: value.coord.lat, lon: value.coord.lon, name: value.name})" class="btn btn-primary">+</button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

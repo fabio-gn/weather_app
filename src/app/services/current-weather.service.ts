@@ -38,17 +38,38 @@ export class CurrentWeatherService {
     )
   }
   postFavourites(fav:Favourite){
-
+    //salvo su una variabile l'oggetto favourites da localstorage
     let localStorageFavourites = localStorage.getItem("favourites")
+    //se esiste favourites nel localstorage allora
     if(localStorageFavourites){
+      //salvo in una variabile l'array parsata
       let parsedFavourites:Favourite[] = JSON.parse(localStorageFavourites)
-      parsedFavourites.push(fav)
-      let stringifiedUpdatedFavourites = JSON.stringify(parsedFavourites)
-      localStorage.setItem('favourites', stringifiedUpdatedFavourites)
-      console.log('localPienoElementiNuovi',stringifiedUpdatedFavourites)
+      //verifico che il parametro fav della funzione non sia presente nell'array parsata
+      let alreadyExists = parsedFavourites.some((item) => {
+        console.log('confronto item e fav',item.name === fav.name)
+        return item.name === fav.name
+      })
+      console.log('alreadyExists',alreadyExists)
+      //se fav non esiste già tra i preferiti
+      if(!alreadyExists){
+        console.log('qui ci sono entrato lo stesso')
+        //allora pusha fav nell'array parsata direttamente dal localstorage
+        parsedFavourites.push(fav)
+        //poi stringhifizzala e risetta l'item nel localstorage
+        let stringifiedUpdatedFavourites = JSON.stringify(parsedFavourites)
+        localStorage.setItem('favourites', stringifiedUpdatedFavourites)
+        console.log('localPienoElementiNuovi',stringifiedUpdatedFavourites)
+      }
+
+
+      //se invece non esiste favourites nel localstorage
     } else {
+      console.log('sono entrato nell astro else')
+      //crea array favourites
       let favouritesArray:Favourite[] = []
+      //pusha nell'array favourites il fav passato come parametro
       favouritesArray.push(fav);
+      //stringhifizza e setta come item nel localstorage
       let favouritesArrayStrigified = JSON.stringify(favouritesArray)
       localStorage.setItem("favourites", favouritesArrayStrigified)
       console.log('localVuotoElementiNuovi', favouritesArrayStrigified)

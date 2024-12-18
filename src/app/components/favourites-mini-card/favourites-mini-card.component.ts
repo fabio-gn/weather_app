@@ -16,13 +16,13 @@ export class FavouritesMiniCardComponent {
   value!: IApiLatLon;
 
   ngOnInit(): void {
-    console.log('fav', this.favourite);
+
     if (this.favourite) {
       this.weatherSrv
         .getByLatLon(this.favourite.lat, this.favourite.lon)
         .subscribe((val) => {
           this.value = val;
-          console.log('value inside of tyny cards', this.value);
+
         });
     } else{
       console.log('problema: non ho ricevuto nessun parametro favourite in input')

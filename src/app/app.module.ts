@@ -11,6 +11,7 @@ import { MsToKmhPipe } from './pipes/ms-to-kmh.pipe';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FavouritesMiniCardComponent } from './components/favourites-mini-card/favourites-mini-card.component';
 import { HorizontalCarouselComponent } from './components/horizontal-carousel/horizontal-carousel.component';
+import { CurrentWeatherOverviewComponent } from './components/current-weather-overview/current-weather-overview.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HorizontalCarouselComponent } from './components/horizontal-carousel/ho
     SearchbarComponent,
     FavouritesMiniCardComponent,
     HorizontalCarouselComponent,
+    CurrentWeatherOverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
